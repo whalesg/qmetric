@@ -26,7 +26,5 @@ export function getDiscounts(items) {
     })
     .filter(m => !!Number(m.price))
 
-  console.log(savings);
-
   return savings;
 }

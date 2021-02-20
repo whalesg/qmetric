@@ -1,8 +1,21 @@
 .basket {
-	width: 50%;
+	width: 80%;
+	max-width: 800px;
 
 	table {
 		margin-bottom: 12px;
+
+		thead tr th {
+			padding: 0 16px;
+			
+			&:first-child {
+				padding-left: 30px;
+			}
+		}
+
+		.basket-item-remove {
+			cursor: pointer;
+		}
 	}
 	
 	ul {

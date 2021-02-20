@@ -3,6 +3,7 @@ import "./index.scss";
 import React, {Component, Fragment} from "react";
 import { connect } from 'react-redux';
 import _ from 'lodash';
+import { removeProductFromBasket } from '../../store/actions/basket';
 import { getDiscounts } from '../../utils/discounts';
 
 class Basket extends Component {
@@ -15,10 +16,11 @@ class Basket extends Component {
 		products.forEach(m => subTotal += Number(m.price));
 		subTotal = _.round(subTotal, 2).toFixed(2);
 
+		
 		const savings = getDiscounts(products);
 		savings.forEach(m => totalSavings += Number(m.price));
 		totalSavings = _.round(totalSavings, 2).toFixed(2);
-
+		
 		total = _.round(subTotal - totalSavings, 2).toFixed(2);
 
 		return (
@@ -31,16 +33,18 @@ class Basket extends Component {
 							<table className='w-50'>
 								<thead>
 									<tr>
-										<th>Product</th>
-										<th className="numeric">Price</th>
+										<th className='w-60'>Product</th>
+										<th className="w-30 text-end">Price</th>
+										<th className="w-10"></th>
 									</tr>
 								</thead>
 								<tbody>
 								{	products.map((p, idx) => {
 									return (
-										<tr data-testid={'cart-item-' + idx} key={idx + 1} className="slide-up-fade-in">
-											<td className="name" data-testid="cart-item-name">{p.name}</td>
-											<td className="numeric" data-testid="cart-item-price">£ {p.price}</td>
+										<tr key={idx + 1} data-testid={`basket-item-${p.id}`} className="slide-up-fade-in">
+											<td className="name" data-testid="basket-item-name">{p.name}</td>
+											<td className="numeric" data-testid="basket-item-price">£ {p.price}</td>
+											<td className='basket-item-remove' data-testid="btn-item-remove" onClick={() => removeProductFromBasket(p)}>X</td>
 										</tr>
 									)
 								})}
@@ -50,7 +54,7 @@ class Basket extends Component {
 						<ul className="bordered w-50 ma-0 px-8 ml-50">
 							<li className="layout-row justify-content-between py-12 font-weight-bold">
 								<span>Subtotal</span>
-								<span data-testid="cart-subtotal">£ {subTotal}</span>
+								<span data-testid="basket-subtotal">£ {subTotal}</span>
 							</li>
 							
 							{ !!savings.length && (
@@ -62,7 +66,7 @@ class Basket extends Component {
 												return (
 													<div className='layout-row justify-content-between py-12 caption font-weight-light' key={m.id}>
 														<span>{ m.name }</span>
-														<span className="discount" data-testid={`cart-discount-${m.id}`}>{`£ ${m.price}`}</span>
+														<span className="discount">{`£ ${m.price}`}</span>
 													</div>
 												)
 											})}
@@ -73,12 +77,12 @@ class Basket extends Component {
 
 							<li className="layout-row justify-content-between py-12 font-weight-bold">
 								<span>Total savings</span>
-								<span data-testid="cart-total-savings">{`£ ${totalSavings}`}</span>
+								<span data-testid="basket-total-savings">{`£ ${totalSavings}`}</span>
 							</li>
 	
 							<li className="layout-row justify-content-between py-12 font-weight-bold">
 								<span>Total</span>
-								<span data-testid="cart-total">£ {total}</span>
+								<span data-testid="basket-total">£ {total}</span>
 							</li>
 						</ul>
 					</div>
