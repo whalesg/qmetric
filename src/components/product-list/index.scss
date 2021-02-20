@@ -1,18 +1,20 @@
-.product-image {
-	margin: 32px 30%;
-	width: 40%;
-	min-height: 90px;
-}
-
-.card-actions {
-	height: 63px;
-}
-
-button.icon-only {
-	width: 18px;
-	font-size: 8px;
+.product-list {
+	.product-image {
+		margin: 32px 30%;
+		width: 40%;
+		min-height: 90px;
+	}
 	
-	.material-icons {
-		font-size: 14px;
+	.card-actions {
+		height: 63px;
+	}
+	
+	button.icon-only {
+		width: 18px;
+		font-size: 8px;
+		
+		.material-icons {
+			font-size: 14px;
+		}
 	}
 }

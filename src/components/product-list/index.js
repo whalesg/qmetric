@@ -7,21 +7,21 @@ import { images } from '../../images';
 
 export default function ProductList() {
 	return (
-		<div className="layout-row wrap justify-content-center app-product-list">
-			{ products.map(product => {
+		<div className="layout-row wrap justify-content-center product-list">
+			{ products.map(p => {
 				return (
-					<section className="flex w-30" data-testid={'product-item-' + product.id} key={product.id}>
+					<section className="flex w-30" data-testid={'product-item-' + p.id} key={p.id}>
 						<div className="flex flex-grow card ma-16">
 							<div className='flex justify-content-center align-items-center flex-grow flex-100'>
-								<img alt="Your Basket" src={images[product.image]} className="d-inline-block align-top product-image"/>
+								<img alt="Your Basket" src={images[p.image]} className="d-inline-block align-top product-image"/>
 							</div>
 							<div className="card-text pa-4">
-								<h5 className="ma-0 text-center">{product.name}</h5>
-								<p className="ma-0 mt-8 text-center">£ {product.price}</p>
+								<h5 className="ma-0 text-center">{p.name}</h5>
+								<p className="ma-0 mt-8 text-center">£ {p.price}</p>
 							</div>
 
 							<div className="card-actions justify-content-center pa-4">
-								<button className="x-small outlined" data-testid="btn-item-add" onClick={() => addProductToBasket(product)}>
+								<button className="x-small outlined" data-testid="btn-item-add" onClick={() => addProductToBasket(p)}>
 									Add To Basket
 								</button>
 							</div>
