@@ -1,0 +1,27 @@
+.basket {
+	width: 30%;
+
+	table {
+		margin-bottom: 12px;
+	}
+	
+	ul {
+		&.bordered li {
+			border-bottom: 1px solid #eeeeee;
+			
+			&:last-child {
+				border-bottom: none;
+			}
+		}
+	
+		&.inset li {
+			padding-left: 16px;
+			padding-right: 16px;
+		}
+	}
+	
+	.caption {
+		font-size: 14px;
+	}
+}	
+
