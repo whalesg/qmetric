@@ -64,7 +64,10 @@ class Basket extends Component {
 										<div className='layout-column'>
 											{ savings.map(m => {
 												return (
-													<div className='layout-row justify-content-between py-12 caption font-weight-light' key={m.id}>
+													<div
+														key={m.id} data-testid={`saving-item-${m.id}`}
+														className='layout-row justify-content-between py-12 caption font-weight-light'
+													>
 														<span>{ m.name }</span>
 														<span className="discount">{`£ ${m.price}`}</span>
 													</div>

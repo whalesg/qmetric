@@ -6,6 +6,7 @@ import '@testing-library/jest-dom/extend-expect';
 const IDMAPS = {
   PRODUCT_ITEMS: ['product-item-1', 'product-item-2', 'product-item-3'],
   BASKET_ITEMS: ['basket-item-1', 'basket-item-2', 'basket-item-3'],
+  SAVING_ITMES: ['saving-item-1', 'saving-item-2'],
   ADD_TO_BASKET_BTN: 'btn-item-add',
   REMOVE_FROM_BASKET_BTN: 'btn-item-remove',
   BASKET_SUBTOTAL: 'basket-subtotal',
@@ -64,6 +65,18 @@ test('Should calculate prices correctly when items are added to basket.', async 
   expect(basketDetails.subTotal).toEqual(28.89);
   expect(basketDetails.totalSavings).toEqual(1.65);
   expect(basketDetails.total).toEqual(27.24);
+});
+
+test('Should two saving items.', async () => {
+  let item;
+  
+  const { getByTestId } = renderApp();
+
+  item = getByTestId(IDMAPS.SAVING_ITMES[0]);
+  expect(item).toBeTruthy();
+
+  item = getByTestId(IDMAPS.SAVING_ITMES[1]);
+  expect(item).toBeTruthy();
 });
 
 test('Should recalculate prices when item is removed from basket', () => {
